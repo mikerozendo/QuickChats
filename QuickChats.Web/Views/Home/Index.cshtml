@@ -51,7 +51,7 @@
 
     <script>
         document.getElementById('generateBtn').addEventListener('click', function () {
-            fetch('/Home/GetNewRandomName', {
+            fetch('@Url.Action("GetNewRandomName", "Home")', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'
