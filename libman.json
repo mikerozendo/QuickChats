@@ -4,7 +4,7 @@
   "libraries": [
     {
       "library": "@microsoft/signalr@latest",
-      "destination": "wwwroot/js/browser"
+      "destination": "./QuickChats.Web/wwwroot/js/browser"
     }
   ]
 }
