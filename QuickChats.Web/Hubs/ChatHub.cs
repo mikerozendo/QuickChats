@@ -6,6 +6,6 @@ public class ChatHub : Hub
 {
 	public async Task OnMessageSentAsync(string messsage, string userName)
 	{
-		await Clients.All.SendAsync("onReceivedMessage", messsage, userName);
+		await Clients.Others.SendAsync("onReceivedMessage", messsage, userName);
 	}
 }

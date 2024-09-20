@@ -110,25 +110,17 @@
         });
 
         hubConnection.on('onReceivedMessage', (message, username) => {
-            onReceivedMessage(message, username)
+            createHtmlMessage(message, username);
         });
-
-        function onReceivedMessage(message, userName) {
-            debugger;
-            let isThePublisherTheSameAsMe = userSelectedName == userName;
-            if(isThePublisherTheSameAsMe){
-                return;
-            }
-
-            createHtmlMessage(message, userName);
-        }
 
         function createHtmlMessage(message, userName) {
             let isThePublisherTheSameAsMe = userSelectedName == userName;
             let messageDiv = document.createElement('div');
+
             messageDiv.classList.add('message');
             messageDiv.classList.add(isThePublisherTheSameAsMe ? 'user' : 'other');
             messageDiv.textContent = `${isThePublisherTheSameAsMe ? 'me' : userName}: ${message}`;
+            
             chatContainer.appendChild(messageDiv);
         }
     </script>
