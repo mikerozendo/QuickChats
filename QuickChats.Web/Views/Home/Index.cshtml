@@ -1,0 +1,82 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate Name</title>
+    <style>
+        body {
+            background-color: black;
+            color: #d7ba7d;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #generateBtn {
+            background-color: #6a0dad;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            height: 10vh;
+        }
+
+        #chatBtn {
+            margin-top: 20px;
+            display: none;
+            background-color: #6a0dad;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            height: 10vh;
+        }
+
+        #optionDiv{
+            display: inline-grid;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="optionDiv">
+        <button id="generateBtn" class="text-rem">Generate Random Name</button>
+        <button id="chatBtn" class="text-rem" data-random-name=""></button>
+    </div>
+
+    <script>
+        document.getElementById('generateBtn').addEventListener('click', function () {
+            fetch('/Home/GetNewRandomName', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    var chatbtn = document.getElementById('chatBtn');
+                    chatbtn.style.display = 'block';
+                    chatbtn.innerText = `Go to chat as ${data.name}`;
+                    chatbtn.setAttribute('data-random-name',data.name);
+                });
+        });
+
+
+        document.getElementById('chatBtn').addEventListener('click', function (element) {
+            var selectedName = element.target.attributes['data-random-name'].value;
+            localStorage.setItem('randomName', selectedName);
+            window.location.href='@Url.Action("Chat", "Home")';
+        });  
+    </script>
+</body>
+
+</html>
