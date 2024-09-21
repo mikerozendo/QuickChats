@@ -100,7 +100,7 @@
 
         sendBtn.addEventListener('click', function () {
             let messageToSend = chatInput.value;
-            if (messageToSend.length == 0) {
+            if (messageToSend.length === 0) {
                 return;
             }
 
@@ -114,7 +114,7 @@
         });
 
         function createHtmlMessage(message, userName) {
-            let isThePublisherTheSameAsMe = userSelectedName == userName;
+            let isThePublisherTheSameAsMe = userSelectedName === userName;
             let messageDiv = document.createElement('div');
 
             messageDiv.classList.add('message');
